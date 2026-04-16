@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jabiertzo - Video Map</title>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+    <link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.5.3/dist/MarkerCluster.css" />
+    <link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.5.3/dist/MarkerCluster.Default.css" />
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; }
+        #map { width: 100vw; height: 100vh; }
+
+        .header {
+            position: absolute;
+            top: 12px;
+            left: 60px;
+            z-index: 1000;
+            background: rgba(255,255,255,0.95);
+            padding: 8px 16px;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+            font-size: 14px;
+        }
+        .header h1 {
+            font-size: 18px;
+            margin-bottom: 2px;
+        }
+        .header .subtitle {
+            color: #666;
+            font-size: 12px;
+        }
+
+        .video-popup {
+            width: 280px;
+        }
+        .video-popup a {
+            text-decoration: none;
+            color: inherit;
+            display: block;
+        }
+        .video-popup a:hover .video-title {
+            color: #c00;
+        }
+        .video-popup img {
+            width: 100%;
+            border-radius: 4px;
+            display: block;
+        }
+        .video-title {
+            font-size: 13px;
+            font-weight: 600;
+            margin-top: 6px;
+            line-height: 1.3;
+            color: #333;
+            transition: color 0.15s;
+        }
+        .video-location {
+            font-size: 11px;
+            color: #888;
+            margin-top: 2px;
+        }
+
+        .leaflet-popup-content-wrapper {
+            border-radius: 8px;
+            padding: 0;
+        }
+        .leaflet-popup-content {
+            margin: 10px;
+        }
+
+        /* Multiple videos at same location */
+        .multi-popup {
+            width: 280px;
+            max-height: 350px;
+            overflow-y: auto;
+        }
+        .multi-popup .video-item {
+            padding: 8px 0;
+            border-bottom: 1px solid #eee;
+        }
+        .multi-popup .video-item:last-child {
+            border-bottom: none;
+        }
+        .multi-popup .video-item a {
+            display: flex;
+            gap: 8px;
+            text-decoration: none;
+            color: inherit;
+            align-items: flex-start;
+        }
+        .multi-popup .video-item img {
+            width: 100px;
+            min-width: 100px;
+            border-radius: 3px;
+        }
+        .multi-popup .video-item .video-title {
+            font-size: 12px;
+            margin-top: 0;
+        }
+        .multi-popup .location-header {
+            font-size: 14px;
+            font-weight: 700;
+            margin-bottom: 6px;
+            color: #222;
+        }
+    </style>
+</head>
+<body>
+    <div id="map"></div>
+    <div class="header">
+        <h1>Jabiertzo Video Map</h1>
+        <div class="subtitle">
+            <span id="video-count">Loading...</span> &middot;
+            <a href="https://www.youtube.com/c/Jabiertzo" target="_blank">YouTube Channel</a>
+        </div>
+    </div>
+
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+    <script src="https://unpkg.com/leaflet.markercluster@1.5.3/dist/leaflet.markercluster.js"></script>
+    <script>
+        const map = L.map('map').setView([30, 110], 5);
+
+        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+            attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
+            maxZoom: 18,
+        }).addTo(map);
+
+        const markers = L.markerClusterGroup({
+            maxClusterRadius: 40,
+            spiderfyOnMaxZoom: true,
+            showCoverageOnHover: false,
+        });
+
+        fetch('/data/videos.json')
+            .then(r => r.json())
+            .then(data => {
+                document.getElementById('video-count').textContent =
+                    `${data.mapped_videos} videos mapped of ${data.total_videos} total`;
+
+                // Group videos by location (same lat/lon)
+                const byLocation = {};
+                data.videos.forEach(v => {
+                    const key = `${v.lat.toFixed(4)},${v.lon.toFixed(4)}`;
+                    if (!byLocation[key]) byLocation[key] = [];
+                    byLocation[key].push(v);
+                });
+
+                Object.values(byLocation).forEach(group => {
+                    const first = group[0];
+                    const marker = L.marker([first.lat, first.lon]);
+
+                    let popupHtml;
+                    if (group.length === 1) {
+                        popupHtml = `
+                            <div class="video-popup">
+                                <a href="${first.url}" target="_blank" rel="noopener">
+                                    <img src="${first.thumbnail}" alt="${first.title}" loading="lazy" />
+                                    <div class="video-title">${first.title}</div>
+                                </a>
+                                <div class="video-location">${first.location}</div>
+                            </div>`;
+                    } else {
+                        const items = group.map(v => `
+                            <div class="video-item">
+                                <a href="${v.url}" target="_blank" rel="noopener">
+                                    <img src="${v.thumbnail}" alt="${v.title}" loading="lazy" />
+                                    <div class="video-title">${v.title}</div>
+                                </a>
+                            </div>`).join('');
+                        popupHtml = `
+                            <div class="multi-popup">
+                                <div class="location-header">${first.location} (${group.length} videos)</div>
+                                ${items}
+                            </div>`;
+                    }
+
+                    marker.bindPopup(popupHtml, { maxWidth: 300 });
+                    markers.addLayer(marker);
+                });
+
+                map.addLayer(markers);
+
+                // Fit map to markers
+                if (markers.getLayers().length > 0) {
+                    map.fitBounds(markers.getBounds().pad(0.1));
+                }
+            })
+            .catch(err => {
+                console.error('Failed to load video data:', err);
+                document.getElementById('video-count').textContent = 'Error loading data';
+            });
+    </script>
+</body>
+</html>

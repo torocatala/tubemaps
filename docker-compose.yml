@@ -1,0 +1,30 @@
+services:
+  scraper:
+    build: ./scraper
+    volumes:
+      - data:/data
+    profiles:
+      - pipeline
+
+  geocoder:
+    build: ./geocoder
+    volumes:
+      - data:/data
+    depends_on:
+      scraper:
+        condition: service_completed_successfully
+    profiles:
+      - pipeline
+
+  web:
+    build: ./web
+    ports:
+      - "8090:80"
+    volumes:
+      - data:/data:ro
+    restart: unless-stopped
+
+volumes:
+  data:
+    external: true
+    name: tubemaps_data
