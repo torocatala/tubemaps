@@ -307,6 +307,16 @@ def main():
         if not thumb:
             thumb = f"https://i.ytimg.com/vi/{vid}/hqdefault.jpg"
 
+        # Extract date: try upload_date, then release_date, then fallback
+        upload_date = video.get("upload_date") or ""
+        if len(upload_date) == 8:
+            date_str = f"{upload_date[:4]}-{upload_date[4:6]}-{upload_date[6:]}"
+        else:
+            date_str = ""
+
+        view_count = video.get("view_count") or 0
+        playlist_idx = video.get("playlist_autonumber") or video.get("playlist_index") or 9999
+
         results.append({
             "id": vid,
             "title": clean_title,
@@ -315,9 +325,13 @@ def main():
             "lat": lat,
             "lon": lon,
             "location": location_query.split(",")[0],
+            "views": view_count,
+            "date": date_str,
+            "order": playlist_idx,
         })
 
-    results.sort(key=lambda x: (x["lat"], x["lon"]))
+    # Sort by playlist order (most recent first)
+    results.sort(key=lambda x: x["order"])
 
     output = {
         "channel": "Jabiertzo",
