@@ -389,14 +389,14 @@
                     if (v.views) meta.push(`<span class="views">${formatViews(v.views)} vistas</span>`);
                     if (v.date) meta.push(`<span class="date">${v.date}</span>`);
 
-                    return `<div class="video-card" data-id="${v.id}" data-lockey="${locKey}"
-                         onclick="onCardClick(this, '${v.id}', '${locKey}')">
+                    return `<a class="video-card" href="${v.url}" target="_blank" rel="noopener"
+                         data-id="${v.id}" data-lockey="${locKey}">
                         <img src="${v.thumbnail}" alt="" loading="lazy"/>
                         <div class="card-text">
                             <div class="card-title">${v.title}</div>
                             <div class="card-meta">${meta.join('')}</div>
                         </div>
-                    </div>`;
+                    </a>`;
                 }).join('');
 
                 return `<div class="location-group" id="loc-${locKey.replace(/[.,]/g, '_')}">
@@ -448,17 +448,6 @@
             }
         }
 
-        function onCardClick(el, videoId, locKey) {
-            if (activeCard) activeCard.classList.remove('active');
-            el.classList.add('active');
-            activeCard = el;
-
-            const marker = markersByLocKey[locKey];
-            if (marker) {
-                map.setView(marker.getLatLng(), 13, { animate: true });
-                marker.openPopup();
-            }
-        }
 
         // Search
         document.getElementById('search').addEventListener('input', function () {
