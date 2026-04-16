@@ -82,7 +82,6 @@ LOCATION_KEYWORDS: list[tuple[str, str]] = [
     ("PUEBLO DE LELE", "Dangyang, Hubei, China"),
     ("PUEBLO DRAGON BALL", "Zhangjiajie, Hunan, China"),
     ("MALUXI", "Maluxi, Hunan, China"),
-    ("MARRUECOS", "Morocco"),
 
     # Cities from livestream titles (alphabetical)
     ("ANHUA", "Anhua, Hunan, China"),
@@ -216,6 +215,7 @@ SKIP_KEYWORDS_IN_TITLE = [
     "CONSEJOS, PREGUNTAS Y RESPUESTAS",
     "NUEVA TECNOLOGÍA DE DIRECTOS",
     "MEJORAMOS LA CALIDAD DE LOS DIRECTOS",
+    "MARRUECOS",
 ]
 
 
