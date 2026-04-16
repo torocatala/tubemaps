@@ -26,5 +26,3 @@ services:
 
 volumes:
   data:
-    external: true
-    name: tubemaps_data
