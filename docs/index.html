@@ -1,196 +1,518 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Jabiertzo - Video Map</title>
+    <title>Jabiertzo - Mapa de Directos</title>
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
-    <link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.5.3/dist/MarkerCluster.css" />
-    <link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.5.3/dist/MarkerCluster.Default.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; }
-        body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; }
-        #map { width: 100vw; height: 100vh; }
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            height: 100vh;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+        }
 
-        .header {
-            position: absolute;
-            top: 12px;
-            left: 60px;
+        /* ── Header ── */
+        .site-header {
+            background: #fff;
+            border-bottom: 1px solid #e5e7eb;
+            padding: 12px 24px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
             z-index: 1000;
-            background: rgba(255,255,255,0.95);
-            padding: 8px 16px;
-            border-radius: 8px;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.2);
-            font-size: 14px;
+            flex-shrink: 0;
         }
-        .header h1 {
+        .site-header .brand {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+        .site-header .brand h1 {
             font-size: 18px;
-            margin-bottom: 2px;
+            font-weight: 700;
+            color: #1a1a1a;
         }
-        .header .subtitle {
-            color: #666;
-            font-size: 12px;
+        .site-header .brand .pin-icon {
+            width: 28px;
+            height: 28px;
+        }
+        .site-header .stats {
+            font-size: 13px;
+            color: #6b7280;
+        }
+        .site-header .stats strong {
+            color: #dc2626;
+            font-weight: 600;
+        }
+        .site-header a {
+            color: #dc2626;
+            text-decoration: none;
+            font-weight: 500;
+        }
+        .site-header a:hover { text-decoration: underline; }
+
+        /* ── Main layout ── */
+        .main-layout {
+            display: flex;
+            flex: 1;
+            overflow: hidden;
         }
 
-        .video-popup {
-            width: 280px;
+        /* ── Sidebar ── */
+        .sidebar {
+            width: 400px;
+            min-width: 400px;
+            background: #fff;
+            border-right: 1px solid #e5e7eb;
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
         }
-        .video-popup a {
+        .sidebar-controls {
+            padding: 12px 16px;
+            border-bottom: 1px solid #e5e7eb;
+            display: flex;
+            gap: 8px;
+            flex-shrink: 0;
+        }
+        .search-box {
+            flex: 1;
+            position: relative;
+        }
+        .search-box input {
+            width: 100%;
+            padding: 8px 12px 8px 34px;
+            border: 1px solid #d1d5db;
+            border-radius: 8px;
+            font-size: 13px;
+            font-family: inherit;
+            outline: none;
+            transition: border-color 0.15s;
+        }
+        .search-box input:focus { border-color: #dc2626; }
+        .search-box svg {
+            position: absolute;
+            left: 10px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: #9ca3af;
+        }
+        .filter-btn {
+            padding: 8px 14px;
+            border: 1px solid #d1d5db;
+            border-radius: 8px;
+            background: #fff;
+            font-size: 13px;
+            font-family: inherit;
+            cursor: pointer;
+            color: #374151;
+            transition: all 0.15s;
+            white-space: nowrap;
+        }
+        .filter-btn:hover { background: #f9fafb; }
+        .filter-btn.active {
+            background: #dc2626;
+            color: #fff;
+            border-color: #dc2626;
+        }
+        .sidebar-count {
+            padding: 8px 16px;
+            font-size: 12px;
+            color: #9ca3af;
+            border-bottom: 1px solid #f3f4f6;
+            flex-shrink: 0;
+        }
+
+        /* ── Location groups ── */
+        .sidebar-list {
+            flex: 1;
+            overflow-y: auto;
+            overflow-x: hidden;
+        }
+        .location-group {
+            border-bottom: 1px solid #f3f4f6;
+        }
+        .location-header {
+            padding: 10px 16px;
+            font-size: 13px;
+            font-weight: 600;
+            color: #1a1a1a;
+            background: #f9fafb;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            position: sticky;
+            top: 0;
+            z-index: 1;
+            transition: background 0.15s;
+        }
+        .location-header:hover { background: #f3f4f6; }
+        .location-header .loc-name {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+        .location-header .loc-pin {
+            color: #dc2626;
+        }
+        .location-header .loc-count {
+            background: #fee2e2;
+            color: #dc2626;
+            font-size: 11px;
+            font-weight: 600;
+            padding: 2px 8px;
+            border-radius: 10px;
+        }
+
+        /* ── Video cards ── */
+        .video-card {
+            display: flex;
+            gap: 12px;
+            padding: 10px 16px;
+            cursor: pointer;
+            transition: background 0.15s;
+            text-decoration: none;
+            color: inherit;
+            border-bottom: 1px solid #f9fafb;
+        }
+        .video-card:hover { background: #fef2f2; }
+        .video-card.active { background: #fee2e2; }
+        .video-card img {
+            width: 120px;
+            min-width: 120px;
+            height: 68px;
+            object-fit: cover;
+            border-radius: 6px;
+        }
+        .video-card .card-text {
+            flex: 1;
+            min-width: 0;
+        }
+        .video-card .card-title {
+            font-size: 13px;
+            font-weight: 500;
+            line-height: 1.35;
+            color: #1a1a1a;
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+        }
+        .video-card .card-location {
+            font-size: 11px;
+            color: #dc2626;
+            margin-top: 4px;
+            font-weight: 500;
+        }
+
+        /* ── Map ── */
+        #map {
+            flex: 1;
+            min-width: 0;
+        }
+        .leaflet-popup-content-wrapper {
+            border-radius: 10px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.15);
+        }
+        .leaflet-popup-content { margin: 0; }
+        .popup-card {
+            width: 260px;
+            padding: 12px;
+        }
+        .popup-card a {
             text-decoration: none;
             color: inherit;
             display: block;
         }
-        .video-popup a:hover .video-title {
-            color: #c00;
-        }
-        .video-popup img {
+        .popup-card a:hover .popup-title { color: #dc2626; }
+        .popup-card img {
             width: 100%;
-            border-radius: 4px;
+            border-radius: 6px;
             display: block;
         }
-        .video-title {
+        .popup-title {
             font-size: 13px;
             font-weight: 600;
-            margin-top: 6px;
+            margin-top: 8px;
             line-height: 1.3;
-            color: #333;
+            color: #1a1a1a;
             transition: color 0.15s;
         }
-        .video-location {
+        .popup-location {
             font-size: 11px;
-            color: #888;
-            margin-top: 2px;
+            color: #dc2626;
+            margin-top: 3px;
+            font-weight: 500;
         }
-
-        .leaflet-popup-content-wrapper {
-            border-radius: 8px;
-            padding: 0;
-        }
-        .leaflet-popup-content {
-            margin: 10px;
-        }
-
-        /* Multiple videos at same location */
-        .multi-popup {
+        .popup-multi {
             width: 280px;
-            max-height: 350px;
+            max-height: 360px;
             overflow-y: auto;
+            padding: 12px;
         }
-        .multi-popup .video-item {
-            padding: 8px 0;
-            border-bottom: 1px solid #eee;
+        .popup-multi-header {
+            font-size: 14px;
+            font-weight: 700;
+            color: #1a1a1a;
+            margin-bottom: 8px;
+            padding-bottom: 8px;
+            border-bottom: 1px solid #f3f4f6;
         }
-        .multi-popup .video-item:last-child {
-            border-bottom: none;
+        .popup-multi-item {
+            display: flex;
+            gap: 8px;
+            padding: 6px 0;
+            border-bottom: 1px solid #f9fafb;
         }
-        .multi-popup .video-item a {
+        .popup-multi-item:last-child { border-bottom: none; }
+        .popup-multi-item a {
             display: flex;
             gap: 8px;
             text-decoration: none;
             color: inherit;
             align-items: flex-start;
         }
-        .multi-popup .video-item img {
-            width: 100px;
-            min-width: 100px;
-            border-radius: 3px;
+        .popup-multi-item a:hover .popup-title { color: #dc2626; }
+        .popup-multi-item img {
+            width: 90px;
+            min-width: 90px;
+            height: 51px;
+            object-fit: cover;
+            border-radius: 4px;
         }
-        .multi-popup .video-item .video-title {
+        .popup-multi-item .popup-title {
             font-size: 12px;
             margin-top: 0;
         }
-        .multi-popup .location-header {
-            font-size: 14px;
-            font-weight: 700;
-            margin-bottom: 6px;
-            color: #222;
+
+        /* ── Custom red marker ── */
+        .red-pin {
+            filter: hue-rotate(140deg) saturate(2) brightness(0.7);
+        }
+
+        /* ── Responsive ── */
+        @media (max-width: 768px) {
+            .main-layout { flex-direction: column-reverse; }
+            .sidebar {
+                width: 100%;
+                min-width: 0;
+                height: 45vh;
+                border-right: none;
+                border-top: 1px solid #e5e7eb;
+            }
+            #map { height: 55vh; }
         }
     </style>
 </head>
 <body>
-    <div id="map"></div>
-    <div class="header">
-        <h1>Jabiertzo Video Map</h1>
-        <div class="subtitle">
-            <span id="video-count">Loading...</span> &middot;
-            <a href="https://www.youtube.com/c/Jabiertzo" target="_blank">YouTube Channel</a>
+    <!-- Header -->
+    <header class="site-header">
+        <div class="brand">
+            <svg class="pin-icon" viewBox="0 0 24 24" fill="#dc2626">
+                <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/>
+            </svg>
+            <h1>Jabiertzo en Directo</h1>
         </div>
+        <div class="stats">
+            <span id="stats-text">Cargando...</span>
+            &nbsp;&middot;&nbsp;
+            <a href="https://www.youtube.com/c/Jabiertzo" target="_blank">Canal de YouTube</a>
+        </div>
+    </header>
+
+    <!-- Main -->
+    <div class="main-layout">
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <div class="sidebar-controls">
+                <div class="search-box">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/>
+                    </svg>
+                    <input type="text" id="search" placeholder="Buscar ciudad o video...">
+                </div>
+            </div>
+            <div class="sidebar-count" id="sidebar-count"></div>
+            <div class="sidebar-list" id="sidebar-list"></div>
+        </aside>
+
+        <!-- Map -->
+        <div id="map"></div>
     </div>
 
     <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
-    <script src="https://unpkg.com/leaflet.markercluster@1.5.3/dist/leaflet.markercluster.js"></script>
     <script>
-        const map = L.map('map').setView([30, 110], 5);
+        const map = L.map('map').setView([30, 108], 5);
 
         L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-            attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
+            attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OSM</a>',
             maxZoom: 18,
         }).addTo(map);
 
-        const markers = L.markerClusterGroup({
-            maxClusterRadius: 40,
-            spiderfyOnMaxZoom: true,
-            showCoverageOnHover: false,
+        // Red pin icon
+        const redIcon = L.icon({
+            iconUrl: 'https://raw.githubusercontent.com/pointhi/leaflet-color-markers/master/img/marker-icon-red.png',
+            shadowUrl: 'https://unpkg.com/leaflet@1.9.4/dist/images/marker-shadow.png',
+            iconSize: [25, 41],
+            iconAnchor: [12, 41],
+            popupAnchor: [1, -34],
+            shadowSize: [41, 41],
         });
+
+        let allVideos = [];
+        let byLocation = {};
+        let markersByLocKey = {};
+        let activeCard = null;
 
         fetch('videos.json')
             .then(r => r.json())
             .then(data => {
-                document.getElementById('video-count').textContent =
-                    `${data.mapped_videos} videos mapped of ${data.total_videos} total`;
+                allVideos = data.videos;
+                document.getElementById('stats-text').innerHTML =
+                    `<strong>${data.mapped_videos}</strong> directos en <strong>${new Set(data.videos.map(v => v.location)).size}</strong> ciudades`;
 
-                // Group videos by location (same lat/lon)
-                const byLocation = {};
+                // Group by location
                 data.videos.forEach(v => {
                     const key = `${v.lat.toFixed(4)},${v.lon.toFixed(4)}`;
                     if (!byLocation[key]) byLocation[key] = [];
                     byLocation[key].push(v);
                 });
 
-                Object.values(byLocation).forEach(group => {
+                // Create markers
+                Object.entries(byLocation).forEach(([key, group]) => {
                     const first = group[0];
-                    const marker = L.marker([first.lat, first.lon]);
+                    const marker = L.marker([first.lat, first.lon], { icon: redIcon });
 
-                    let popupHtml;
+                    let html;
                     if (group.length === 1) {
-                        popupHtml = `
-                            <div class="video-popup">
-                                <a href="${first.url}" target="_blank" rel="noopener">
-                                    <img src="${first.thumbnail}" alt="${first.title}" loading="lazy" />
-                                    <div class="video-title">${first.title}</div>
-                                </a>
-                                <div class="video-location">${first.location}</div>
-                            </div>`;
+                        html = `<div class="popup-card">
+                            <a href="${first.url}" target="_blank">
+                                <img src="${first.thumbnail}" alt="" loading="lazy"/>
+                                <div class="popup-title">${first.title}</div>
+                            </a>
+                            <div class="popup-location">${first.location}</div>
+                        </div>`;
                     } else {
-                        const items = group.map(v => `
-                            <div class="video-item">
-                                <a href="${v.url}" target="_blank" rel="noopener">
-                                    <img src="${v.thumbnail}" alt="${v.title}" loading="lazy" />
-                                    <div class="video-title">${v.title}</div>
+                        const items = group.slice(0, 10).map(v => `
+                            <div class="popup-multi-item">
+                                <a href="${v.url}" target="_blank">
+                                    <img src="${v.thumbnail}" alt="" loading="lazy"/>
+                                    <div class="popup-title">${v.title}</div>
                                 </a>
                             </div>`).join('');
-                        popupHtml = `
-                            <div class="multi-popup">
-                                <div class="location-header">${first.location} (${group.length} videos)</div>
-                                ${items}
-                            </div>`;
+                        const more = group.length > 10 ? `<div style="text-align:center;padding:6px;color:#9ca3af;font-size:11px;">+${group.length - 10} more</div>` : '';
+                        html = `<div class="popup-multi">
+                            <div class="popup-multi-header">${first.location} (${group.length})</div>
+                            ${items}${more}
+                        </div>`;
                     }
 
-                    marker.bindPopup(popupHtml, { maxWidth: 300 });
-                    markers.addLayer(marker);
+                    marker.bindPopup(html, { maxWidth: 300 });
+                    marker.on('click', () => {
+                        scrollToLocation(key);
+                    });
+                    marker.addTo(map);
+                    markersByLocKey[key] = marker;
                 });
 
-                map.addLayer(markers);
+                renderSidebar(allVideos);
 
-                // Fit map to markers
-                if (markers.getLayers().length > 0) {
-                    map.fitBounds(markers.getBounds().pad(0.1));
+                if (Object.keys(markersByLocKey).length > 0) {
+                    const bounds = L.latLngBounds(
+                        Object.values(byLocation).map(g => [g[0].lat, g[0].lon])
+                    );
+                    map.fitBounds(bounds.pad(0.1));
                 }
-            })
-            .catch(err => {
-                console.error('Failed to load video data:', err);
-                document.getElementById('video-count').textContent = 'Error loading data';
             });
+
+        function renderSidebar(videos) {
+            const list = document.getElementById('sidebar-list');
+            const grouped = {};
+            videos.forEach(v => {
+                if (!grouped[v.location]) grouped[v.location] = [];
+                grouped[v.location].push(v);
+            });
+
+            // Sort locations by video count descending
+            const sorted = Object.entries(grouped).sort((a, b) => b[1].length - a[1].length);
+
+            document.getElementById('sidebar-count').textContent =
+                `${videos.length} directos en ${sorted.length} ciudades`;
+
+            list.innerHTML = sorted.map(([loc, vids]) => {
+                const locKey = `${vids[0].lat.toFixed(4)},${vids[0].lon.toFixed(4)}`;
+                const cards = vids.map(v => `
+                    <div class="video-card" data-id="${v.id}" data-lockey="${locKey}"
+                         onclick="onCardClick(this, '${v.id}', '${locKey}')">
+                        <img src="${v.thumbnail}" alt="" loading="lazy"/>
+                        <div class="card-text">
+                            <div class="card-title">${v.title}</div>
+                            <div class="card-location">${v.location}</div>
+                        </div>
+                    </div>`).join('');
+
+                return `<div class="location-group" id="loc-${locKey.replace(/[.,]/g, '_')}">
+                    <div class="location-header" onclick="onLocationClick('${locKey}')">
+                        <span class="loc-name">
+                            <svg class="loc-pin" width="14" height="14" viewBox="0 0 24 24" fill="currentColor">
+                                <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/>
+                            </svg>
+                            ${loc}
+                        </span>
+                        <span class="loc-count">${vids.length}</span>
+                    </div>
+                    ${cards}
+                </div>`;
+            }).join('');
+        }
+
+        function onLocationClick(locKey) {
+            const marker = markersByLocKey[locKey];
+            if (marker) {
+                map.setView(marker.getLatLng(), 13, { animate: true });
+                marker.openPopup();
+            }
+        }
+
+        function onCardClick(el, videoId, locKey) {
+            if (activeCard) activeCard.classList.remove('active');
+            el.classList.add('active');
+            activeCard = el;
+
+            const marker = markersByLocKey[locKey];
+            if (marker) {
+                map.setView(marker.getLatLng(), 13, { animate: true });
+                marker.openPopup();
+            }
+        }
+
+        function scrollToLocation(locKey) {
+            const el = document.getElementById('loc-' + locKey.replace(/[.,]/g, '_'));
+            if (el) {
+                el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            }
+        }
+
+        // Search
+        document.getElementById('search').addEventListener('input', function () {
+            const q = this.value.toLowerCase().trim();
+            if (!q) {
+                renderSidebar(allVideos);
+                return;
+            }
+            const filtered = allVideos.filter(v =>
+                v.title.toLowerCase().includes(q) ||
+                v.location.toLowerCase().includes(q)
+            );
+            renderSidebar(filtered);
+        });
     </script>
 </body>
 </html>
