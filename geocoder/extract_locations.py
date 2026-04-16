@@ -50,6 +50,13 @@ def geocode(query: str) -> tuple[float, float] | None:
 # ---------------------------------------------------------------------------
 
 LOCATION_KEYWORDS: list[tuple[str, str]] = [
+    # Specific places / landmarks from descriptions
+    ("BAOTOU", "Baotou, Inner Mongolia, China"),
+    ("ZHIJIANG", "Zhijiang, Hubei, China"),
+    ("YANGSHAN", "Yangshan, Guangdong, China"),
+    ("MALUXI", "Anhua, Hunan, China"),
+    ("SONKOU", "Sonkou, Guangdong, China"),
+
     # Specific places / landmarks
     ("HUAGUOYUAN", "Huaguoyuan, Guiyang, Guizhou, China"),
     ("MONTAÑAS AVATAR", "Zhangjiajie, Hunan, China"),
@@ -193,18 +200,22 @@ LOCATION_KEYWORDS: list[tuple[str, str]] = [
     # Generic hints from description context
     ("NORESTE", "Shenyang, Liaoning, China"),
     ("COREA DEL NORTE", "Dandong, Liaoning, China"),
+    ("TROPICAL", "Haikou, Hainan, China"),
+    ("PLAYA", "Haikou, Hainan, China"),
 ]
 
 # Short analysis/talk streams (not IRL) - skip these
 SKIP_KEYWORDS_IN_TITLE = [
-    "ARANCELES", "SANCIONES", "GUERRA COMERCIAL",
-    "TIERRAS RARAS", "RESERVAS DE CHINA",
-    "PETRÓLEO", "INFLACIÓN", "TECNOLOGÍA CHINA",
-    "IRÁN", "JIANG XUEQIN",
+    "RESERVAS DE CHINA",
+    "PETRÓLEO EN CHINA",
+    "INFLACIÓN PARA TODOS",
+    "JIANG XUEQIN",
     "AUTOCARAVANAS CHINAS DE SEGUNDA",
     "AUTOCARAVANA CHINA HÍBRIDA",
     "OCCIDENTE YA NO ENTIENDE",
     "CONSEJOS, PREGUNTAS Y RESPUESTAS",
+    "NUEVA TECNOLOGÍA DE DIRECTOS",
+    "MEJORAMOS LA CALIDAD DE LOS DIRECTOS",
 ]
 
 
@@ -243,6 +254,10 @@ def extract_location(title: str, description: str) -> str | None:
     for keyword, query in LOCATION_KEYWORDS:
         if keyword in desc_upper:
             return query
+
+    # Fallback: "CHINA EN DIRECTO" streams with no location are from Changsha (home city)
+    if "CHINA EN DIRECTO" in title_upper or "EN DIRECTO" in title_upper:
+        return "Changsha, Hunan, China"
 
     return None
 

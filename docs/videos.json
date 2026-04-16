@@ -1,10 +1,22 @@
 {
   "channel": "Jabiertzo",
   "channel_url": "https://www.youtube.com/c/Jabiertzo",
-  "generated": "2026-04-16 12:57:42",
+  "generated": "2026-04-16 13:04:06",
   "total_videos": 401,
-  "mapped_videos": 352,
+  "mapped_videos": 386,
   "videos": [
+    {
+      "id": "9Av-Yw8pPF0",
+      "title": "CHINA EN DIRECTO: LANZAMIENTO DJI OSMO POCKET 4 - ¿CONSEGUIREMOS UNA?",
+      "url": "https://www.youtube.com/watch?v=9Av-Yw8pPF0",
+      "thumbnail": "https://i.ytimg.com/vi/9Av-Yw8pPF0/hqdefault.jpg?v=69e09881",
+      "lat": 28.1987538,
+      "lon": 112.9708685,
+      "location": "Changsha",
+      "views": 6234,
+      "date": "2026-04-16",
+      "order": 1
+    },
     {
       "id": "po1kwgYKo-U",
       "title": "CHINA EN DIRECTO: EXPLORANDO CHANGSHA",
@@ -136,6 +148,18 @@
       "views": 18163,
       "date": "2026-04-01",
       "order": 13
+    },
+    {
+      "id": "N_WKT2O0YOk",
+      "title": "CHINA EN DIRECTO: NUEVA FÓRMULA DE DIRECTOS: CALLE + NOTICIARIO",
+      "url": "https://www.youtube.com/watch?v=N_WKT2O0YOk",
+      "thumbnail": "https://i.ytimg.com/vi/N_WKT2O0YOk/hqdefault.jpg?v=69cbe813",
+      "lat": 28.1987538,
+      "lon": 112.9708685,
+      "location": "Changsha",
+      "views": 16028,
+      "date": "2026-03-31",
+      "order": 14
     },
     {
       "id": "vBYqi1JcG9Q",
@@ -306,6 +330,30 @@
       "order": 31
     },
     {
+      "id": "KTPq2sHukY4",
+      "title": "CHINA EN DIRECTO: TIENDA DE ROBOTS",
+      "url": "https://www.youtube.com/watch?v=KTPq2sHukY4",
+      "thumbnail": "https://i.ytimg.com/vi/KTPq2sHukY4/hqdefault.jpg?v=69b03481",
+      "lat": 28.1987538,
+      "lon": 112.9708685,
+      "location": "Changsha",
+      "views": 17139,
+      "date": "2026-03-10",
+      "order": 32
+    },
+    {
+      "id": "bqMVJPId3sQ",
+      "title": "CHINA EN DIRECTO: VIVIR DEBAJO DEL PUENTE",
+      "url": "https://www.youtube.com/watch?v=bqMVJPId3sQ",
+      "thumbnail": "https://i.ytimg.com/vi/bqMVJPId3sQ/hqdefault.jpg?v=69aefa3b",
+      "lat": 28.1987538,
+      "lon": 112.9708685,
+      "location": "Changsha",
+      "views": 14864,
+      "date": "2026-03-09",
+      "order": 34
+    },
+    {
       "id": "KWe844h7tMY",
       "title": "CHINA EN DIRECTO: TIENDA ROBOT EN CHANGSHA",
       "url": "https://www.youtube.com/watch?v=KWe844h7tMY",
@@ -328,6 +376,18 @@
       "views": 13980,
       "date": "2026-03-05",
       "order": 36
+    },
+    {
+      "id": "P4sW7N3OkT4",
+      "title": "CHINA EN DIRECTO: ELÉCTRICOS CHINOS - AION, LEAP MOTOR Y MÁS",
+      "url": "https://www.youtube.com/watch?v=P4sW7N3OkT4",
+      "thumbnail": "https://i.ytimg.com/vi/P4sW7N3OkT4/hqdefault.jpg?v=69a86327",
+      "lat": 28.1987538,
+      "lon": 112.9708685,
+      "location": "Changsha",
+      "views": 19579,
+      "date": "2026-03-04",
+      "order": 37
     },
     {
       "id": "N3gk4LaV11k",
@@ -354,6 +414,18 @@
       "order": 39
     },
     {
+      "id": "v6STiY5xcjk",
+      "title": "CHINA EN DIRECTO: OBRAS DE MEGAPUENTE EN EL YANGTSÉ",
+      "url": "https://www.youtube.com/watch?v=v6STiY5xcjk",
+      "thumbnail": "https://i.ytimg.com/vi/v6STiY5xcjk/hqdefault.jpg?v=69a1bed7",
+      "lat": 30.4283835,
+      "lon": 111.7546868,
+      "location": "Zhijiang",
+      "views": 19109,
+      "date": "2026-02-27",
+      "order": 40
+    },
+    {
       "id": "sQreMSYxHSo",
       "title": "CHINA EN DIRECTO: VEMOS COCHES CON LA MATRIARCA",
       "url": "https://www.youtube.com/watch?v=sQreMSYxHSo",
@@ -364,6 +436,18 @@
       "views": 30461,
       "date": "2026-02-26",
       "order": 41
+    },
+    {
+      "id": "A0U_SDpnzE0",
+      "title": "CHINA EN DIRECTO: LIVESTREAMING CON DJI POCKET 3 VS MÓVILES",
+      "url": "https://www.youtube.com/watch?v=A0U_SDpnzE0",
+      "thumbnail": "https://i.ytimg.com/vi/A0U_SDpnzE0/hqdefault.jpg?v=699f15dd",
+      "lat": 28.1987538,
+      "lon": 112.9708685,
+      "location": "Changsha",
+      "views": 19572,
+      "date": "2026-02-25",
+      "order": 42
     },
     {
       "id": "I-ziqZexDw4",
@@ -498,6 +582,18 @@
       "order": 53
     },
     {
+      "id": "5GMpGO7Xeak",
+      "title": "CHINA EN DIRECTO: PROBAMOS FUTURO COCHE DE LA JEFA?",
+      "url": "https://www.youtube.com/watch?v=5GMpGO7Xeak",
+      "thumbnail": "https://i.ytimg.com/vi/5GMpGO7Xeak/hqdefault.jpg?v=6985fc79",
+      "lat": 28.1987538,
+      "lon": 112.9708685,
+      "location": "Changsha",
+      "views": 51728,
+      "date": "2026-02-06",
+      "order": 54
+    },
+    {
       "id": "O5HfrXeusJc",
       "title": "CHINA EN DIRECTO: DÍA DE REFLEXIÓN",
       "url": "https://www.youtube.com/watch?v=O5HfrXeusJc",
@@ -520,6 +616,18 @@
       "views": 20714,
       "date": "2026-02-04",
       "order": 56
+    },
+    {
+      "id": "pxpGiY-7t2w",
+      "title": "CHINA EN DIRECTO: COCHES ELÉCTRICOS POR $10-20K - BYD VS CHANGAN",
+      "url": "https://www.youtube.com/watch?v=pxpGiY-7t2w",
+      "thumbnail": "https://i.ytimg.com/vi/pxpGiY-7t2w/hqdefault.jpg?v=6982173f",
+      "lat": 28.1987538,
+      "lon": 112.9708685,
+      "location": "Changsha",
+      "views": 32834,
+      "date": "2026-02-03",
+      "order": 57
     },
     {
       "id": "SCgePhujXos",
@@ -702,6 +810,18 @@
       "order": 72
     },
     {
+      "id": "ivDmvm5G6zs",
+      "title": "CHINA EN DIRECTO: ALDEA DE MALUXI - DORMIMOS EN UNA CASA DE MADERA",
+      "url": "https://www.youtube.com/watch?v=ivDmvm5G6zs",
+      "thumbnail": "https://i.ytimg.com/vi/ivDmvm5G6zs/hqdefault.jpg?v=696647d8",
+      "lat": 28.3031394,
+      "lon": 111.402883,
+      "location": "Anhua",
+      "views": 15582,
+      "date": "2026-01-13",
+      "order": 73
+    },
+    {
       "id": "lEFJgA_hTXo",
       "title": "CHINA EN DIRECTO: COMENZAMOS MINIVIAJE",
       "url": "https://www.youtube.com/watch?v=lEFJgA_hTXo",
@@ -738,6 +858,30 @@
       "order": 76
     },
     {
+      "id": "kZHp87mrNy8",
+      "title": "CHINA EN DIRECTO: PLANES PARA EL CANAL - ¿QUÉ QUERÉIS VER?",
+      "url": "https://www.youtube.com/watch?v=kZHp87mrNy8",
+      "thumbnail": "https://i.ytimg.com/vi/kZHp87mrNy8/hqdefault.jpg?v=695e6707",
+      "lat": 28.1987538,
+      "lon": 112.9708685,
+      "location": "Changsha",
+      "views": 15830,
+      "date": "2026-01-07",
+      "order": 77
+    },
+    {
+      "id": "f7wpqHPR_Aw",
+      "title": "CHINA EN DIRECTO: HOY CENAMOS EN CASA - COMPRAS Y COCINA",
+      "url": "https://www.youtube.com/watch?v=f7wpqHPR_Aw",
+      "thumbnail": "https://i.ytimg.com/vi/f7wpqHPR_Aw/hqdefault.jpg?v=695e6568",
+      "lat": 28.1987538,
+      "lon": 112.9708685,
+      "location": "Changsha",
+      "views": 28649,
+      "date": "2026-01-06",
+      "order": 78
+    },
+    {
       "id": "EIAwUeFpBWg",
       "title": "CHINA EN DIRECTO: CUMPLEAÑOS DE LELE",
       "url": "https://www.youtube.com/watch?v=EIAwUeFpBWg",
@@ -750,6 +894,18 @@
       "order": 79
     },
     {
+      "id": "Zt9DPVjG03c",
+      "title": "CHINA EN DIRECTO: QUE NO PARE LA FIESTA DE 2026",
+      "url": "https://www.youtube.com/watch?v=Zt9DPVjG03c",
+      "thumbnail": "https://i.ytimg.com/vi/Zt9DPVjG03c/hqdefault.jpg?v=6957e749",
+      "lat": 28.1987538,
+      "lon": 112.9708685,
+      "location": "Changsha",
+      "views": 20972,
+      "date": "2026-01-02",
+      "order": 80
+    },
+    {
       "id": "n5WbZekp8As",
       "title": "CHINA EN DIRECTO: AÑO NUEVO 2026 - ¿AMBIENTE DE RESACA?",
       "url": "https://www.youtube.com/watch?v=n5WbZekp8As",
@@ -760,6 +916,18 @@
       "views": 27496,
       "date": "2026-01-01",
       "order": 81
+    },
+    {
+      "id": "EPlUN5BC3h0",
+      "title": "CHINA EN DIRECTO: NOCHEVIEJA - CENA Y “CAMPANADAS\"",
+      "url": "https://www.youtube.com/watch?v=EPlUN5BC3h0",
+      "thumbnail": "https://i.ytimg.com/vi/EPlUN5BC3h0/hqdefault.jpg?v=695570be",
+      "lat": 28.1987538,
+      "lon": 112.9708685,
+      "location": "Changsha",
+      "views": 40005,
+      "date": "2025-12-31",
+      "order": 82
     },
     {
       "id": "M7RnTxzbBJE",
@@ -796,6 +964,18 @@
       "views": 19782,
       "date": "2025-12-26",
       "order": 85
+    },
+    {
+      "id": "6V5lHA0AQTU",
+      "title": "CHINA EN DIRECTO: DÍA DE NAVIDAD",
+      "url": "https://www.youtube.com/watch?v=6V5lHA0AQTU",
+      "thumbnail": "https://i.ytimg.com/vi/6V5lHA0AQTU/hqdefault.jpg?v=694d4831",
+      "lat": 28.1987538,
+      "lon": 112.9708685,
+      "location": "Changsha",
+      "views": 23868,
+      "date": "2025-12-25",
+      "order": 86
     },
     {
       "id": "AZ_MYMCGR04",
@@ -1654,9 +1834,9 @@
       "title": "CHINA EN DIRECTO: CIUDAD COSTERA - PLAYA",
       "url": "https://www.youtube.com/watch?v=WFDOaAA5wfc",
       "thumbnail": "https://i.ytimg.com/vi/WFDOaAA5wfc/hqdefault.jpg?v=68c453e6",
-      "lat": 36.6519754,
-      "lon": 117.1138479,
-      "location": "Jinan",
+      "lat": 20.0462328,
+      "lon": 110.1956502,
+      "location": "Haikou",
       "views": 17595,
       "date": "2025-09-12",
       "order": 158
@@ -1918,9 +2098,9 @@
       "title": "CHINA EN DIRECTO: PEQUEÑA CIUDAD EN EL YANGTSÉ",
       "url": "https://www.youtube.com/watch?v=iYAPyog6SsI",
       "thumbnail": "https://i.ytimg.com/vi/iYAPyog6SsI/hqdefault.jpg?v=689b4ff0",
-      "lat": 30.578891,
-      "lon": 114.2921197,
-      "location": "Wuhan",
+      "lat": 30.4283835,
+      "lon": 111.7546868,
+      "location": "Zhijiang",
       "views": 15530,
       "date": "2025-08-12",
       "order": 180
@@ -1942,9 +2122,9 @@
       "title": "CHINA EN DIRECTO: DÍA DE \"PLAYA\" LEJOS DE LA COSTA",
       "url": "https://www.youtube.com/watch?v=viV-4tKsxy4",
       "thumbnail": "https://i.ytimg.com/vi/viV-4tKsxy4/hqdefault.jpg?v=6894b878",
-      "lat": 30.578891,
-      "lon": 114.2921197,
-      "location": "Wuhan",
+      "lat": 20.0462328,
+      "lon": 110.1956502,
+      "location": "Haikou",
       "views": 24580,
       "date": "2025-08-07",
       "order": 182
@@ -2032,6 +2212,18 @@
       "views": 23653,
       "date": "2025-07-28",
       "order": 189
+    },
+    {
+      "id": "3VjCVm3aYks",
+      "title": "CHINA EN DIRECTO: FIESTA DE LUCES - JABIERTZO PREDICE TORMENTA",
+      "url": "https://www.youtube.com/watch?v=3VjCVm3aYks",
+      "thumbnail": "https://i.ytimg.com/vi/3VjCVm3aYks/hqdefault.jpg?v=68823f42",
+      "lat": 28.1987538,
+      "lon": 112.9708685,
+      "location": "Changsha",
+      "views": 21744,
+      "date": "2025-07-24",
+      "order": 190
     },
     {
       "id": "MeW73MAsJlU",
@@ -2134,9 +2326,9 @@
       "title": "CHINA EN DIRECTO: ¿VENDEMOS LA FURGO? - PLAYA ARTIFICIAL",
       "url": "https://www.youtube.com/watch?v=CmCGAW2gRWQ",
       "thumbnail": "https://i.ytimg.com/vi/CmCGAW2gRWQ/hqdefault.jpg?v=686557f5",
-      "lat": 28.1987538,
-      "lon": 112.9708685,
-      "location": "Changsha",
+      "lat": 20.0462328,
+      "lon": 110.1956502,
+      "location": "Haikou",
       "views": 27430,
       "date": "2025-07-02",
       "order": 203
@@ -2754,6 +2946,18 @@
       "order": 255
     },
     {
+      "id": "7Pl4tMSi2d0",
+      "title": "CHINA EN DIRECTO: TIERRAS RARAS Y PRADERAS",
+      "url": "https://www.youtube.com/watch?v=7Pl4tMSi2d0",
+      "thumbnail": "https://i.ytimg.com/vi/7Pl4tMSi2d0/hqdefault.jpg?v=68013648",
+      "lat": 40.6174777,
+      "lon": 109.944912,
+      "location": "Baotou",
+      "views": 27267,
+      "date": "2025-04-17",
+      "order": 256
+    },
+    {
       "id": "kvdRt2XX7aI",
       "title": "CHINA EN DIRECTO: GRAN MURALLA SOLAR ANTIDESIERTO",
       "url": "https://www.youtube.com/watch?v=kvdRt2XX7aI",
@@ -3166,9 +3370,9 @@
       "title": "CHINA EN DIRECTO: EN LA PLAYA DE RELAX",
       "url": "https://www.youtube.com/watch?v=OPSVZNxORCs",
       "thumbnail": "https://i.ytimg.com/vi/OPSVZNxORCs/hqdefault.jpg?v=67c1d2b6",
-      "lat": 23.1288454,
-      "lon": 113.2590064,
-      "location": "Guangzhou",
+      "lat": 20.0462328,
+      "lon": 110.1956502,
+      "location": "Haikou",
       "views": 27432,
       "date": "2025-02-28",
       "order": 291
@@ -3232,6 +3436,30 @@
       "views": 21570,
       "date": "2025-02-20",
       "order": 296
+    },
+    {
+      "id": "u9fjlOHO6lg",
+      "title": "CHINA EN DIRECTO: LO PEOR DE NUESTRA CIUDAD",
+      "url": "https://www.youtube.com/watch?v=u9fjlOHO6lg",
+      "thumbnail": "https://i.ytimg.com/vi/u9fjlOHO6lg/hqdefault.jpg?v=67b5ee16",
+      "lat": 28.1987538,
+      "lon": 112.9708685,
+      "location": "Changsha",
+      "views": 17976,
+      "date": "2025-02-19",
+      "order": 297
+    },
+    {
+      "id": "fcp-bviaspg",
+      "title": "CHINA EN DIRECTO: BARRIO DE VIVIENDAS ABARATADAS",
+      "url": "https://www.youtube.com/watch?v=fcp-bviaspg",
+      "thumbnail": "https://i.ytimg.com/vi/fcp-bviaspg/hqdefault.jpg?v=67b4b338",
+      "lat": 28.1987538,
+      "lon": 112.9708685,
+      "location": "Changsha",
+      "views": 16908,
+      "date": "2025-02-18",
+      "order": 298
     },
     {
       "id": "63XwwX1axPM",
@@ -3870,6 +4098,18 @@
       "order": 351
     },
     {
+      "id": "f9HXzU26wnU",
+      "title": "EN DIRECTO DESDE CHINA: ALDEA ANTIGUA TORMENTOSA",
+      "url": "https://www.youtube.com/watch?v=f9HXzU26wnU",
+      "thumbnail": "https://i.ytimg.com/vi/f9HXzU26wnU/hqdefault.jpg?v=66be20ba",
+      "lat": 24.468328,
+      "lon": 112.6360737,
+      "location": "Yangshan",
+      "views": 81504,
+      "date": "2024-08-15",
+      "order": 352
+    },
+    {
       "id": "jCrWhabvX9k",
       "title": "DIRECTO CALLEJERO DESDE CHINA",
       "url": "https://www.youtube.com/watch?v=jCrWhabvX9k",
@@ -3880,6 +4120,42 @@
       "views": 63987,
       "date": "2024-08-08",
       "order": 353
+    },
+    {
+      "id": "3YwTXf_Nsus",
+      "title": "LA NOCHE EN CHINA: AMBIENTE NOCTURNO",
+      "url": "https://www.youtube.com/watch?v=3YwTXf_Nsus",
+      "thumbnail": "https://i.ytimg.com/vi/3YwTXf_Nsus/hqdefault.jpg?sqp=-oaymwEmCOADEOgC8quKqQMa8AEB-AHOBYACgAqKAgwIABABGGUgZShlMA8=&rs=AOn4CLC9TfwmU0m04-Z3HChDtIwmldE2Lw",
+      "lat": 28.1987538,
+      "lon": 112.9708685,
+      "location": "Changsha",
+      "views": 59943,
+      "date": "2024-04-30",
+      "order": 356
+    },
+    {
+      "id": "3r9EyaCYxrg",
+      "title": "PROBAMOS EL JAMÓN EN CHINA",
+      "url": "https://www.youtube.com/watch?v=3r9EyaCYxrg",
+      "thumbnail": "https://i.ytimg.com/vi/3r9EyaCYxrg/hqdefault.jpg?sqp=-oaymwEmCOADEOgC8quKqQMa8AEB-AHOBYACgAqKAgwIABABGHIgTihEMA8=&rs=AOn4CLBqhiw0Qz4vwVgwYLb7lgVzif9N_g",
+      "lat": 28.1987538,
+      "lon": 112.9708685,
+      "location": "Changsha",
+      "views": 76105,
+      "date": "2024-04-26",
+      "order": 357
+    },
+    {
+      "id": "VIM--CgMC-c",
+      "title": "ALDEA TRADICIONAL AL SUROESTE DE CHINA",
+      "url": "https://www.youtube.com/watch?v=VIM--CgMC-c",
+      "thumbnail": "https://i.ytimg.com/vi/VIM--CgMC-c/hqdefault.jpg?sqp=-oaymwEmCOADEOgC8quKqQMa8AEB-AHOBYACgAqKAgwIABABGHIgRyg7MA8=&rs=AOn4CLDY_GTTCZh8repB6_X00_BejLpYZg",
+      "lat": 28.1987538,
+      "lon": 112.9708685,
+      "location": "Changsha",
+      "views": 61365,
+      "date": "2024-04-10",
+      "order": 358
     },
     {
       "id": "c8WK6rWKxqo",
@@ -3894,6 +4170,30 @@
       "order": 359
     },
     {
+      "id": "5OVT844tSto",
+      "title": "RESPONDEMOS A VUESTRAS PREGUNTAS MIENTRAS CENAMOS",
+      "url": "https://www.youtube.com/watch?v=5OVT844tSto",
+      "thumbnail": "https://i.ytimg.com/vi/5OVT844tSto/hqdefault.jpg?sqp=-oaymwEmCOADEOgC8quKqQMa8AEB-AHOBYACgAqKAgwIABABGHIgXygrMA8=&rs=AOn4CLCVPIpWlQAbNcqIxGglg3B-hm2xoQ",
+      "lat": 28.1987538,
+      "lon": 112.9708685,
+      "location": "Changsha",
+      "views": 106828,
+      "date": "2024-04-05",
+      "order": 360
+    },
+    {
+      "id": "HE-f0u5pitg",
+      "title": "VISITAMOS UN PUEBLO DE PIEDRA VOLCÁNICA EN CHINA",
+      "url": "https://www.youtube.com/watch?v=HE-f0u5pitg",
+      "thumbnail": "https://i.ytimg.com/vi/HE-f0u5pitg/hqdefault.jpg?sqp=-oaymwEmCOADEOgC8quKqQMa8AEB-AHOBYACgAqKAgwIABABGGUgWShGMA8=&rs=AOn4CLCywlYfjb8NzvyEnDw_fAm3k-QIrQ",
+      "lat": 28.1987538,
+      "lon": 112.9708685,
+      "location": "Changsha",
+      "views": 38251,
+      "date": "2024-04-03",
+      "order": 361
+    },
+    {
       "id": "-qdWTz23SAE",
       "title": "¿POR QUÉ SIEMPRE ENFERMAMOS AL VIAJAR?",
       "url": "https://www.youtube.com/watch?v=-qdWTz23SAE",
@@ -3904,6 +4204,30 @@
       "views": 53640,
       "date": "2024-03-31",
       "order": 363
+    },
+    {
+      "id": "BNOxl5GgAdk",
+      "title": "¡Patxi vive, los paseos por pueblos chinos siguen!",
+      "url": "https://www.youtube.com/watch?v=BNOxl5GgAdk",
+      "thumbnail": "https://i.ytimg.com/vi/BNOxl5GgAdk/hqdefault.jpg",
+      "lat": 28.1987538,
+      "lon": 112.9708685,
+      "location": "Changsha",
+      "views": 92066,
+      "date": "2024-03-30",
+      "order": 364
+    },
+    {
+      "id": "epXI4Ci5n5E",
+      "title": "PLAYA PARA SURFEAR EN CHINA",
+      "url": "https://www.youtube.com/watch?v=epXI4Ci5n5E",
+      "thumbnail": "https://i.ytimg.com/vi/epXI4Ci5n5E/hqdefault.jpg?sqp=-oaymwEmCOADEOgC8quKqQMa8AEB-AHOBYACgAqKAgwIABABGHIgUSg_MA8=&rs=AOn4CLBfWYsYCFCjB4mEcv71U5ljNyxk8g",
+      "lat": 20.0462328,
+      "lon": 110.1956502,
+      "location": "Haikou",
+      "views": 104587,
+      "date": "2024-03-26",
+      "order": 365
     },
     {
       "id": "lwHh5WuUVfQ",
@@ -3942,6 +4266,66 @@
       "order": 368
     },
     {
+      "id": "z_3nwTpAKXs",
+      "title": "LELE RESPONDE A PREGUNTAS y PERSIGUEN A PATXI EN LA PLAYA",
+      "url": "https://www.youtube.com/watch?v=z_3nwTpAKXs",
+      "thumbnail": "https://i.ytimg.com/vi/z_3nwTpAKXs/hqdefault.jpg?sqp=-oaymwEmCOADEOgC8quKqQMa8AEB-AHOBYACgAqKAgwIABABGHIgSig9MA8=&rs=AOn4CLBPFY1qUVfy-ZQAOQp0NIjsQgRwYg",
+      "lat": 20.0462328,
+      "lon": 110.1956502,
+      "location": "Haikou",
+      "views": 100488,
+      "date": "2024-03-19",
+      "order": 369
+    },
+    {
+      "id": "0nA7VgCNVkU",
+      "title": "PUEBLO ANTIGUO Y PLAYA TROPICAL CHINA:",
+      "url": "https://www.youtube.com/watch?v=0nA7VgCNVkU",
+      "thumbnail": "https://i.ytimg.com/vi/0nA7VgCNVkU/hqdefault.jpg?sqp=-oaymwEmCOADEOgC8quKqQMa8AEB-AHOBYACgAqKAgwIABABGHIgUSg-MA8=&rs=AOn4CLCgT6Mt3LoPTQ0uYQP24dQTRkZvzg",
+      "lat": 20.0462328,
+      "lon": 110.1956502,
+      "location": "Haikou",
+      "views": 165202,
+      "date": "2024-03-17",
+      "order": 370
+    },
+    {
+      "id": "Uz0VxCPv_1k",
+      "title": "CENA-KARAOKE EN PUERTO TROPICAL DE CHINA",
+      "url": "https://www.youtube.com/watch?v=Uz0VxCPv_1k",
+      "thumbnail": "https://i.ytimg.com/vi/Uz0VxCPv_1k/hqdefault.jpg?sqp=-oaymwEmCOADEOgC8quKqQMa8AEB-AHOBYACgAqKAgwIABABGHIgUShBMA8=&rs=AOn4CLC-0CLylnYgQiCuxF_ZGRte1EcaoQ",
+      "lat": 20.0462328,
+      "lon": 110.1956502,
+      "location": "Haikou",
+      "views": 108057,
+      "date": "2024-03-15",
+      "order": 371
+    },
+    {
+      "id": "ImXojdStVq8",
+      "title": "VISITAMOS UN TEMPLO BUDISTA EN LA PLAYA AL SUR DE CHINA",
+      "url": "https://www.youtube.com/watch?v=ImXojdStVq8",
+      "thumbnail": "https://i.ytimg.com/vi/ImXojdStVq8/hqdefault.jpg?sqp=-oaymwEmCOADEOgC8quKqQMa8AEB-AHOBYACgAqKAgwIABABGFggYChlMA8=&rs=AOn4CLA9cGKrBPn3JDluleqSxLj4T8zXww",
+      "lat": 20.0462328,
+      "lon": 110.1956502,
+      "location": "Haikou",
+      "views": 92766,
+      "date": "2024-03-13",
+      "order": 372
+    },
+    {
+      "id": "tcm1Fj0osuo",
+      "title": "POLLO AL COCO: ESPECIALIDAD DE LA CHINA TROPICAL",
+      "url": "https://www.youtube.com/watch?v=tcm1Fj0osuo",
+      "thumbnail": "https://i.ytimg.com/vi/tcm1Fj0osuo/hqdefault.jpg?sqp=-oaymwEmCOADEOgC8quKqQMa8AEB-AHOBYACgAqKAgwIABABGGUgWChHMA8=&rs=AOn4CLDnWlKNFxEZmDPA-TpQF_etVW8cHQ",
+      "lat": 20.0462328,
+      "lon": 110.1956502,
+      "location": "Haikou",
+      "views": 106227,
+      "date": "2024-03-10",
+      "order": 373
+    },
+    {
       "id": "BizMyGZRl3Q",
       "title": "MEGACENTRO LIBRE DE IMPUESTOS EN  CHINA",
       "url": "https://www.youtube.com/watch?v=BizMyGZRl3Q",
@@ -3976,6 +4360,18 @@
       "views": 69152,
       "date": "2024-03-08",
       "order": 376
+    },
+    {
+      "id": "eI6eLG4keOQ",
+      "title": "SALIMOS DE VIAJE EN FURGONETA POR CHINA: ASÍ ES NUESTRO EQUIPAJE",
+      "url": "https://www.youtube.com/watch?v=eI6eLG4keOQ",
+      "thumbnail": "https://i.ytimg.com/vi/eI6eLG4keOQ/hqdefault.jpg?v=65e5ee23",
+      "lat": 28.1987538,
+      "lon": 112.9708685,
+      "location": "Changsha",
+      "views": 91071,
+      "date": "2024-03-04",
+      "order": 377
     },
     {
       "id": "IA1a4jzcgzk",
@@ -4066,9 +4462,9 @@
       "title": "EN DIRECTO DESDE UNA PLAYA DEL SUR DE CHINA",
       "url": "https://www.youtube.com/watch?v=NpgCRilUsTY",
       "thumbnail": "https://i.ytimg.com/vi/NpgCRilUsTY/hqdefault.jpg?v=65a41960",
-      "lat": 23.1288454,
-      "lon": 113.2590064,
-      "location": "Guangzhou",
+      "lat": 20.0462328,
+      "lon": 110.1956502,
+      "location": "Haikou",
       "views": 87651,
       "date": "2024-01-13",
       "order": 386
@@ -4168,6 +4564,18 @@
       "views": 123107,
       "date": "2023-11-16",
       "order": 394
+    },
+    {
+      "id": "ZUIHzvGx_Ho",
+      "title": "EN DIRECTO DESDE EL \"PUEBLO\" DE LELE",
+      "url": "https://www.youtube.com/watch?v=ZUIHzvGx_Ho",
+      "thumbnail": "https://i.ytimg.com/vi/ZUIHzvGx_Ho/hqdefault.jpg?v=64e8b9cd",
+      "lat": 28.1987538,
+      "lon": 112.9708685,
+      "location": "Changsha",
+      "views": 112864,
+      "date": "2023-08-25",
+      "order": 396
     },
     {
       "id": "EyfkExjSnok",
