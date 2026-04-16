@@ -6,7 +6,7 @@ import subprocess
 import sys
 import os
 
-CHANNEL_URL = os.environ.get("CHANNEL_URL", "https://www.youtube.com/c/Jabiertzo/videos")
+CHANNEL_URL = os.environ.get("CHANNEL_URL", "https://www.youtube.com/c/Jabiertzo/streams")
 OUTPUT_FILE = "/data/channel_raw.jsonl"
 
 

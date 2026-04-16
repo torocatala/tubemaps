@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-Extract locations from Jabiertzo YouTube channel videos and geocode them.
+Extract locations from Jabiertzo YouTube channel livestreams and geocode them.
 
 Uses a curated location dictionary + pattern matching on titles/descriptions,
 then geocodes via Nominatim (OSM).
@@ -19,7 +19,6 @@ OUTPUT_FILE = "/data/videos.json"
 
 geolocator = Nominatim(user_agent="tubemaps-jabiertzo/1.0")
 
-# Cache geocoding results to avoid repeated API calls
 _geocode_cache: dict[str, tuple[float, float] | None] = {}
 
 
@@ -44,7 +43,7 @@ def geocode(query: str) -> tuple[float, float] | None:
 
 
 # ---------------------------------------------------------------------------
-# Curated location dictionary for the Jabiertzo channel.
+# Curated location dictionary for the Jabiertzo channel livestreams.
 # Keys are matched (case-insensitive) against title+description.
 # Values are Nominatim geocoding queries.
 # Order matters: more specific entries should be checked first.
@@ -53,108 +52,126 @@ def geocode(query: str) -> tuple[float, float] | None:
 LOCATION_KEYWORDS: list[tuple[str, str]] = [
     # Specific places / landmarks
     ("HUAGUOYUAN", "Huaguoyuan, Guiyang, Guizhou, China"),
-    ("BAISHIZHOU", "Baishizhou, Shenzhen, China"),
-    ("JINGJINJI", "Beijing, China"),
-    ("QINGTIAN", "Qingtian, Zhejiang, China"),
-    ("FENGHUANG", "Fenghuang, Hunan, China"),
-    ("ZHANGJIAJIE", "Zhangjiajie, Hunan, China"),
-    ("YANGSHUO", "Yangshuo, Guangxi, China"),
-    ("PINGYAO", "Pingyao, Shanxi, China"),
-    ("LESHAN", "Leshan, Sichuan, China"),
-    ("PANZHIHUA", "Panzhihua, Sichuan, China"),
-    ("LIJIANG", "Lijiang, Yunnan, China"),
-    ("XIAHE", "Xiahe, Gansu, China"),
-    ("ZHANGYE", "Zhangye, Gansu, China"),
-    ("YONGTAI", "Yongtai, Gansu, China"),
-    ("ZHENYUAN", "Zhenyuan, Guizhou, China"),
-    ("XIJIANG", "Xijiang, Guizhou, China"),
-    ("DU'AN", "Du'an, Guangxi, China"),
-    ("MINGSHI", "Mingshi, Guangxi, China"),
-    ("DONGXING", "Dongxing, Guangxi, China"),
-    ("BEIHAI", "Beihai, Guangxi, China"),
-    ("CHENGYANG", "Chengyang, Guangxi, China"),
-    ("QIANYANG", "Qianyang, Hunan, China"),
-    ("BIANCHENG", "Biancheng, Hunan, China"),
-    ("FURONG", "Furong, Hunan, China"),
-    ("SHAOXING", "Shaoxing, Zhejiang, China"),
-    ("MEIZHOU", "Meizhou, Guangdong, China"),
-    ("NANJIE", "Nanjie, Henan, China"),
-    ("TURPAN", "Turpan, Xinjiang, China"),
-    ("TURPÁN", "Turpan, Xinjiang, China"),
-    ("URUMCHI", "Urumqi, Xinjiang, China"),
-    ("URUMQI", "Urumqi, Xinjiang, China"),
-    ("HAMI", "Hami, Xinjiang, China"),
-    ("BALIKUN", "Barkol, Xinjiang, China"),
-    ("BARKOL", "Barkol, Xinjiang, China"),
-    ("FUKANG", "Fukang, Xinjiang, China"),
-    ("XINING", "Xining, Qinghai, China"),
-    ("DANGYANG", "Dangyang, Hubei, China"),
-    ("YICHANG", "Yichang, Hubei, China"),
-    ("JINGZHOU", "Jingzhou, Hubei, China"),
-    ("SHEDIAN", "Shedian, Henan, China"),
-    ("TAIYUAN", "Taiyuan, Shanxi, China"),
-    ("ZHANJIANG", "Zhanjiang, Guangdong, China"),
-    ("HEGANG", "Hegang, Heilongjiang, China"),
-    ("ZHANGJIAKOU", "Zhangjiakou, Hebei, China"),
-    ("SANXIA RENJIA", "Yichang, Hubei, China"),
-    ("TRES GARGANTAS", "Yichang, Hubei, China"),
-    ("SHÍTÀNJǏNG", "Shitanjing, Ningxia, China"),
-    ("PROYECTO 816", "Fuling, Chongqing, China"),
-    ("YUQUAN", "Dangyang, Hubei, China"),
-    ("MONTAÑAS ARCOIRIS", "Zhangye, Gansu, China"),
-    ("GRAN MURALLA", "Jiayuguan, Gansu, China"),
-    ("TENGGELI", "Shapotou, Ningxia, China"),
-    ("TIANZHU", "Tianzhu, Gansu, China"),
-    ("CAOBUHU", "Hubei, China"),
+    ("MONTAÑAS AVATAR", "Zhangjiajie, Hunan, China"),
     ("MONTAÑAS DRAGON BALL", "Zhangjiajie, Hunan, China"),
     ("DRAGON BALL", "Zhangjiajie, Hunan, China"),
+    ("GUERREROS DE TERRACOTA", "Xi'an, Shaanxi, China"),
+    ("GRAN MURALLA", "Shanhaiguan, Hebei, China"),
+    ("MONTAÑA TIANMEN", "Zhangjiajie, Hunan, China"),
+    ("TRES GARGANTAS", "Yichang, Hubei, China"),
+    ("PRESA DE LAS TRES", "Yichang, Hubei, China"),
+    ("VOLCÁN CHANGBAI", "Changbaishan, Jilin, China"),
+    ("RÍO XIANG", "Changsha, Hunan, China"),
     ("RÍO AMARILLO", "Lanzhou, Gansu, China"),
+    ("MONTE YUELU", "Changsha, Hunan, China"),
+    ("ISLA DE MAO", "Changsha, Hunan, China"),
+    ("CONCESIÓN FRANCESA", "Shanghai, China"),
+    ("EL BUND", "Shanghai, China"),
+    ("BARRIO ALEMÁN", "Qingdao, Shandong, China"),
+    ("ZONA 798", "Beijing, China"),
+    ("TEMPLO DEL CIELO", "Beijing, China"),
+    ("ÚLTIMO EMPERADOR", "Changchun, Jilin, China"),
+    ("TIGRES SIBERIANOS", "Harbin, Heilongjiang, China"),
+    ("PUEBLO DE LELE", "Dangyang, Hubei, China"),
+    ("PUEBLO DRAGON BALL", "Zhangjiajie, Hunan, China"),
+    ("MALUXI", "Maluxi, Hunan, China"),
+    ("MARRUECOS", "Morocco"),
 
-    # Cities (alphabetical)
+    # Cities from livestream titles (alphabetical)
+    ("ANHUA", "Anhua, Hunan, China"),
     ("CHANGCHUN", "Changchun, Jilin, China"),
     ("CHANGSHA", "Changsha, Hunan, China"),
     ("CHENGDU", "Chengdu, Sichuan, China"),
+    ("CHENZHOU", "Chenzhou, Hunan, China"),
+    ("CHIBI", "Chibi, Hubei, China"),
     ("CHONGQING", "Chongqing, China"),
+    ("DALIAN", "Dalian, Liaoning, China"),
+    ("DANDONG", "Dandong, Liaoning, China"),
+    ("DANGYANG", "Dangyang, Hubei, China"),
+    ("DATONG", "Datong, Shanxi, China"),
     ("DONGGUAN", "Dongguan, Guangdong, China"),
+    ("DONGXING", "Dongxing, Guangxi, China"),
+    ("FENGHUANG", "Fenghuang, Hunan, China"),
+    ("FOSHAN", "Foshan, Guangdong, China"),
+    ("FUZHOU", "Fuzhou, Fujian, China"),
+    ("FURONG", "Furong, Hunan, China"),
     ("GUANGZHOU", "Guangzhou, Guangdong, China"),
     ("GUIYANG", "Guiyang, Guizhou, China"),
     ("HANGZHOU", "Hangzhou, Zhejiang, China"),
     ("HARBIN", "Harbin, Heilongjiang, China"),
     ("HEFEI", "Hefei, Anhui, China"),
+    ("HOHHOT", "Hohhot, Inner Mongolia, China"),
     ("HONG KONG", "Hong Kong"),
+    ("HUIZHOU", "Huizhou, Guangdong, China"),
+    ("HUZHOU", "Huzhou, Zhejiang, China"),
+    ("JIAN'OU", "Jianou, Fujian, China"),
+    ("JINGMEN", "Jingmen, Hubei, China"),
+    ("JINGZHOU", "Jingzhou, Hubei, China"),
     ("KUNMING", "Kunming, Yunnan, China"),
     ("LANZHOU", "Lanzhou, Gansu, China"),
+    ("LESHAN", "Leshan, Sichuan, China"),
+    ("LIJIANG", "Lijiang, Yunnan, China"),
+    ("LINXIANG", "Linxiang, Hunan, China"),
     ("MACAO", "Macao"),
     ("MACAU", "Macao"),
+    ("NANCHANG", "Nanchang, Jiangxi, China"),
     ("NANJING", "Nanjing, Jiangsu, China"),
     ("NANNING", "Nanning, Guangxi, China"),
+    ("NANXUN", "Nanxun, Zhejiang, China"),
+    ("NINGDE", "Ningde, Fujian, China"),
+    ("ORDOS", "Ordos, Inner Mongolia, China"),
     ("PEKÍN", "Beijing, China"),
     ("PEKIN", "Beijing, China"),
     ("BEIJING", "Beijing, China"),
+    ("PUTIAN", "Putian, Fujian, China"),
     ("QINGDAO", "Qingdao, Shandong, China"),
+    ("QINGYUAN", "Qingyuan, Guangdong, China"),
+    ("QIQIHAR", "Qiqihar, Heilongjiang, China"),
+    ("QUANZHOU", "Quanzhou, Fujian, China"),
     ("SANYA", "Sanya, Hainan, China"),
+    ("SHAOGUAN", "Shaoguan, Guangdong, China"),
     ("SHANGHAI", "Shanghai, China"),
+    ("SHANWEI", "Shanwei, Guangdong, China"),
+    ("SHANTOU", "Shantou, Guangdong, China"),
+    ("SHENYANG", "Shenyang, Liaoning, China"),
     ("SHENZHEN", "Shenzhen, Guangdong, China"),
+    ("SUQIAN", "Suqian, Jiangsu, China"),
+    ("SUZHOU", "Suzhou, Jiangsu, China"),
+    ("TAIYUAN", "Taiyuan, Shanxi, China"),
+    ("TIANJIN", "Tianjin, China"),
+    ("TONG CHENG", "Tongcheng, Anhui, China"),
     ("WUHAN", "Wuhan, Hubei, China"),
     ("XIAMEN", "Xiamen, Fujian, China"),
     ("XI'AN", "Xi'an, Shaanxi, China"),
-    ("XIAN", "Xi'an, Shaanxi, China"),
+    ("YANJI", "Yanji, Jilin, China"),
+    ("YAN'AN", "Yan'an, Shaanxi, China"),
+    ("YANGSHUO", "Yangshuo, Guangxi, China"),
+    ("YANGZHOU", "Yangzhou, Jiangsu, China"),
+    ("YICHANG", "Yichang, Hubei, China"),
+    ("YINCHUAN", "Yinchuan, Ningxia, China"),
+    ("YIYANG", "Yiyang, Hunan, China"),
+    ("YIZHANG", "Yizhang, Hunan, China"),
+    ("YOUXIAN", "Youxian, Hunan, China"),
+    ("ZHANGJIAJIE", "Zhangjiajie, Hunan, China"),
+    ("ZHANGZHOU", "Zhangzhou, Fujian, China"),
     ("ZHENGZHOU", "Zhengzhou, Henan, China"),
+    ("ZHUHAI", "Zhuhai, Guangdong, China"),
+    ("ZHUZHOU", "Zhuzhou, Hunan, China"),
 
-    # Provinces / regions (lower priority, used as fallback from descriptions)
+    # Provinces / regions (lower priority fallback)
     ("CANTÓN", "Guangzhou, Guangdong, China"),
     ("GUANGDONG", "Guangdong, China"),
-    ("FUJIAN", "Fujian, China"),
-    ("GUIZHOU", "Guizhou, China"),
+    ("FUJIAN", "Fuzhou, Fujian, China"),
+    ("GUIZHOU", "Guiyang, Guizhou, China"),
     ("HAINAN", "Haikou, Hainan, China"),
     ("HENAN", "Zhengzhou, Henan, China"),
     ("HUBEI", "Wuhan, Hubei, China"),
     ("HUNAN", "Changsha, Hunan, China"),
     ("JIANGSU", "Nanjing, Jiangsu, China"),
+    ("JIANGXI", "Nanchang, Jiangxi, China"),
     ("JILIN", "Jilin, China"),
     ("GANSU", "Lanzhou, Gansu, China"),
     ("MONGOLIA INTERIOR", "Hohhot, Inner Mongolia, China"),
-    ("INNER MONGOLIA", "Hohhot, Inner Mongolia, China"),
     ("NINGXIA", "Yinchuan, Ningxia, China"),
     ("QINGHAI", "Xining, Qinghai, China"),
     ("SHAANXI", "Xi'an, Shaanxi, China"),
@@ -169,48 +186,31 @@ LOCATION_KEYWORDS: list[tuple[str, str]] = [
     ("HEBEI", "Shijiazhuang, Hebei, China"),
     ("TÍBET", "Lhasa, Tibet, China"),
     ("TIBET", "Lhasa, Tibet, China"),
-    ("MESETA TIBETANA", "Lhasa, Tibet, China"),
     ("YANBIAN", "Yanbian, Jilin, China"),
-    ("XIANGXI", "Xiangxi, Hunan, China"),
+    ("HEILONGJIANG", "Harbin, Heilongjiang, China"),
+    ("LIAONING", "Shenyang, Liaoning, China"),
+
+    # Generic hints from description context
+    ("NORESTE", "Shenyang, Liaoning, China"),
+    ("COREA DEL NORTE", "Dandong, Liaoning, China"),
 ]
 
-# Patterns to extract location from descriptions (Spanish)
-DESC_LOCATION_PATTERNS = [
-    r"(?:os (?:mostramos|llevamos)(?: a| por)?) (\w[\w\s']+?)(?:,| y | para | mientras | donde )",
-    r"grabado en (\w[\w\s]+?)(?:,|\.|$| \()",
-    r"(?:provincia de|región de) (\w[\w\s]+?)(?:,|\.|$| \()",
-    r"capital de (\w[\w\s]+?)(?:,|\.|$| \()",
-    r"ciudad (?:de|china de) (\w[\w\s]+?)(?:,|\.|$| \()",
-    r"localidad de (\w[\w\s]+?)(?:,|\.|$| \()",
-]
-
-# Videos to explicitly skip (pure analysis, no filming location)
-# These are about geopolitics, theory, etc. with no meaningful map pin
+# Short analysis/talk streams (not IRL) - skip these
 SKIP_KEYWORDS_IN_TITLE = [
-    "ARANCELES", "SANCIONES", "GUERRA COMERCIAL", "DESACOPLAMIENTO",
-    "TIERRAS RARAS", "NEXPERIA", "PLAN QUINQUENAL",
-    "GLOBOS ESPÍA", "PROPUESTA DE CHINA PARA LA PAZ",
-    "EEUU CONTRA EL AVANCE", "EEUU QUIERE GROENLANDIA",
-    "POSTURA DE CHINA SOBRE VENEZUELA",
-    "PROYECTO MANHATTAN DE CHINA",
-    "TENSIONES JAPÓN", "RELACIONES CHINA-IRÁN",
-    "TAIWÁN se está VOLVIENDO",
-    "PAÍSES ÁRABES", "QATAR",
+    "ARANCELES", "SANCIONES", "GUERRA COMERCIAL",
+    "TIERRAS RARAS", "RESERVAS DE CHINA",
+    "PETRÓLEO", "INFLACIÓN", "TECNOLOGÍA CHINA",
+    "IRÁN", "JIANG XUEQIN",
+    "AUTOCARAVANAS CHINAS DE SEGUNDA",
+    "AUTOCARAVANA CHINA HÍBRIDA",
+    "OCCIDENTE YA NO ENTIENDE",
+    "CONSEJOS, PREGUNTAS Y RESPUESTAS",
 ]
-
-# Countries that are NOT in China - skip these as filming locations
-NON_CHINA_ANALYSIS = {
-    "EEUU", "JAPÓN", "JAPON", "INDIA", "RUSIA", "VENEZUELA",
-    "GROENLANDIA", "IRÁN", "IRAN", "PANAMÁ", "PANAMA", "CUBA",
-    "EUROPA", "COREA", "TAIWÁN", "TAIWAN", "VIETNAM", "UCRANIA",
-}
 
 
 def get_best_thumbnail(thumbnails: list[dict]) -> str | None:
-    """Pick the best available thumbnail URL."""
     if not thumbnails:
         return None
-    # Prefer medium quality (~320px wide)
     best = None
     best_w = 0
     for t in thumbnails:
@@ -221,7 +221,6 @@ def get_best_thumbnail(thumbnails: list[dict]) -> str | None:
                 best_w = w
     if best:
         return best
-    # Fallback: largest available
     for t in sorted(thumbnails, key=lambda x: x.get("width", 0) or 0, reverse=True):
         if t.get("url"):
             return t["url"]
@@ -229,29 +228,20 @@ def get_best_thumbnail(thumbnails: list[dict]) -> str | None:
 
 
 def extract_location(title: str, description: str) -> str | None:
-    """Try to extract a geocoding query from the video title and description."""
     title_upper = title.upper()
     desc_upper = (description or "").upper()
-    combined = title_upper + " " + desc_upper
 
-    # Skip pure geopolitics videos
     for skip in SKIP_KEYWORDS_IN_TITLE:
         if skip in title_upper:
             return None
 
-    # First pass: check title for specific location keywords
+    # Check title first, then description
     for keyword, query in LOCATION_KEYWORDS:
         if keyword in title_upper:
-            # Skip non-China country references that are just analysis topics
-            if keyword in NON_CHINA_ANALYSIS:
-                continue
             return query
 
-    # Second pass: check description for location keywords
     for keyword, query in LOCATION_KEYWORDS:
         if keyword in desc_upper:
-            if keyword in NON_CHINA_ANALYSIS:
-                continue
             return query
 
     return None
@@ -270,7 +260,7 @@ def main():
                 continue
             videos.append(json.loads(line))
 
-    print(f"Processing {len(videos)} videos...")
+    print(f"Processing {len(videos)} streams...")
 
     results = []
     geocoded_locations: dict[str, tuple[float, float] | None] = {}
@@ -283,9 +273,16 @@ def main():
         desc = video.get("description", "") or ""
         thumbnails = video.get("thumbnails", [])
 
-        # Clean title: remove "| Jabiertzo" suffix
-        clean_title = re.sub(r"\s*\|\s*Jabiertzo.*$", "", title).strip()
-        clean_title = re.sub(r"\s*\|\s*Jabiertzo.*$", "", clean_title, flags=re.IGNORECASE).strip()
+        # Clean title: remove suffixes like "| Jabiertzo", "| Jabiertzo en directo"
+        clean_title = re.sub(
+            r"\s*\|?\s*Jabiertzo\s*(en directo)?(\s*IRL)?\s*$", "",
+            title, flags=re.IGNORECASE
+        ).strip()
+        # Also remove standalone suffixes
+        clean_title = re.sub(
+            r"\s*\|\s*Jabiertzo.*$", "", clean_title, flags=re.IGNORECASE
+        ).strip()
+        clean_title = re.sub(r"\s*#shortslive\s*$", "", clean_title, flags=re.IGNORECASE).strip()
 
         location_query = extract_location(title, desc)
 
@@ -293,7 +290,6 @@ def main():
             no_location += 1
             continue
 
-        # Geocode (with caching)
         if location_query not in geocoded_locations:
             print(f"  [{i+1}/{len(videos)}] Geocoding: {location_query}")
             coords = geocode(location_query)
@@ -307,8 +303,6 @@ def main():
             continue
 
         lat, lon = coords
-
-        # Standard YouTube thumbnail as fallback
         thumb = get_best_thumbnail(thumbnails)
         if not thumb:
             thumb = f"https://i.ytimg.com/vi/{vid}/hqdefault.jpg"
@@ -323,7 +317,6 @@ def main():
             "location": location_query.split(",")[0],
         })
 
-    # Sort by location for nicer grouping
     results.sort(key=lambda x: (x["lat"], x["lon"]))
 
     output = {
@@ -339,7 +332,7 @@ def main():
     with open(OUTPUT_FILE, "w") as f:
         json.dump(output, f, indent=2, ensure_ascii=False)
 
-    print(f"\nDone! {len(results)} videos mapped, {no_location} without location, {skipped} geocode failures")
+    print(f"\nDone! {len(results)} streams mapped, {no_location} without location, {skipped} geocode failures")
     print(f"Output: {OUTPUT_FILE}")
 
 
