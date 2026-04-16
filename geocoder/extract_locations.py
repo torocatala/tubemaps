@@ -94,7 +94,7 @@ LOCATION_KEYWORDS: list[tuple[str, str]] = [
     ("FENGHUANG", "Fenghuang, Hunan, China"),
     ("FOSHAN", "Foshan, Guangdong, China"),
     ("FUZHOU", "Fuzhou, Fujian, China"),
-    ("FURONG", "Furong, Hunan, China"),
+    ("FURONG", "Furong, 芙蓉镇, Yongshun, Hunan, China"),
     ("GUANGZHOU", "Guangzhou, Guangdong, China"),
     ("GUIYANG", "Guiyang, Guizhou, China"),
     ("HANGZHOU", "Hangzhou, Zhejiang, China"),
